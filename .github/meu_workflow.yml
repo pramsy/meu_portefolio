@@ -1,0 +1,18 @@
+# Name do fluxo que irá rodar, com nome do arquivo: seu-deploy.yaml
+name: Build e deploy da página do seu portfolio para GitHub Pages
+
+on:
+  push: # Quando tiver alterações no push na sua branch 'main' faça o processo:
+   branches: [ "main" ]
+jobs:
+ deploy: # um conjunto de tarefas chamadas 'deploy'
+  permissions:
+    id-token: write # adicione aqui!! permissao write pro token rodar o deploy com Actions
+    contents: read
+  name: Deploy pages
+  runs-on: ubuntu-latest # roda num ambiente do Linux Ubuntu
+  steps: # etapas da execuçao (tasks):
+   - uses: actions/checkout@v3 # pega código do seu projeto para poder ser usado no pipeline
+   - name: Deploy pagina # cria/deploy com as actions fornecidas:
+      uses: actions/deploy-pages@v2 # github action para publicar no Github Pages
+    
